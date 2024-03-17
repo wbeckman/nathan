@@ -37,10 +37,6 @@ def calculate_savings_for_num_months(num_months, salary, portion_saved, semiannu
             salary += (semiannual_raise_portion * salary)
             monthly_dollars_saved = portion_saved * (salary / 12)
 
-
-    print(f"Current salary: {salary}")
-    print(f"Savings after {num_months} months: {current_savings}")
-    print(f"Savings rate: {portion_saved}")
     return current_savings
 
 def bisection_search(
@@ -55,14 +51,12 @@ def bisection_search(
     num_steps = 0
     savings = 0.0
     low, high = 1,10000
+    middle = (low + high) / 2
     down_payment_cost = portion_down_payment * total_cost
     while not within_tolerance(down_payment_cost, savings) and not low == high:
         middle = (low + high) / 2
         savings = calculate_savings_for_num_months(
             max_num_months, salary, middle/10000, semiannual_raise_portion, r)
-        print(f"Current salary: {salary}")
-        print(f"Savings after {max_num_months} months: {savings}")
-        print(f"Savings rate: {middle / 10000}")
         middle = (low + high) / 2
         num_steps += 1
         if savings < down_payment_cost:
